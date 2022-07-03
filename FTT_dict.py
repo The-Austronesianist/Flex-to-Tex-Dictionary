@@ -1,3 +1,6 @@
+#This method is pretty slow compared to just looping though each div. 
+#I was running into a problem finding certain sections of the html tho, so I switched to this cause the issues disapeared. 
+
 from bs4 import BeautifulSoup
 import re
 
@@ -71,12 +74,10 @@ for unique_id in ids :
             #areas with multiple instanciations possible but not guaronteed
         else :
             #If sharedgrammaticalinfo is not present, then we have to grab multiple parts of speech.
-            #I'll have to figure out how to loop through this and make sure that the proper entry gets the proper pos
             partofspeech = senses.find_all(class_ = 'partofspeech')
 
         #The actual definition.
         #Entries with multiple senses will have more than one.
-        #Will have to figure out how to loop through it.
         if sense_number < 1:
             definitionorgloss = senses.find(class_ = 'definitionorgloss')
         if sense_number > 1 :
